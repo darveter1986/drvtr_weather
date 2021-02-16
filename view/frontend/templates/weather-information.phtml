@@ -19,7 +19,7 @@
                     "components": {
                         "weatherInformation": {
                             "component": "Drvtr_Weather/js/weather-information",
-                            "interval": <?= $block->getInterval() ?>
+                            "interval": <?= $block->escapeJs($block->getInterval()) ?>
                         }
                     }
                 }

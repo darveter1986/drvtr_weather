@@ -3,7 +3,8 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Drvtr_Weather::weather_information" title="Weather Information" translate="title" module="Drvtr_Weather" sortOrder="100"
-             parent="Magento_Backend::content_elements" action="weather/information" resource="Drvtr_Weather::weather_information"/>
+        <add id="Drvtr_Weather::weather_information" title="Weather Information" translate="title"
+             module="Drvtr_Weather" sortOrder="100" parent="Magento_Backend::content_elements"
+             action="weather/information" resource="Drvtr_Weather::weather_information"/>
     </menu>
 </config>

@@ -4,11 +4,11 @@
 namespace Drvtr\Weather\Cron;
 
 
+use Drvtr\Weather\Api\Data\WeatherInformationInterface;
+use Drvtr\Weather\Api\Data\WeatherInformationInterfaceFactory;
 use Drvtr\Weather\Model\ApiClient;
 use Drvtr\Weather\Model\Config;
 use Drvtr\Weather\Model\ResourceModel\WeatherInformation;
-use Drvtr\Weather\Api\Data\WeatherInformationInterface;
-use Drvtr\Weather\Api\Data\WeatherInformationInterfaceFactory;
 use Magento\Framework\Model\AbstractModel;
 use Psr\Log\LoggerInterface;
 
@@ -47,6 +47,8 @@ class WeatherDataUpdater
      * @param Config $config
      * @param ApiClient $apiClient
      * @param WeatherInformation $resource
+     * @param WeatherInformationInterfaceFactory $weatherInformationFactory
+     * @param LoggerInterface $logger
      */
     public function __construct(
         Config $config,

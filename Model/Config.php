@@ -51,7 +51,6 @@ class Config
      */
     public function getApiKey()
     {
-//        return $this->encryptor->decrypt($this->scopeConfig->getValue('drvtr_weather/general/api_key'));
         return $this->scopeConfig->getValue('drvtr_weather/general/api_key');
     }
 

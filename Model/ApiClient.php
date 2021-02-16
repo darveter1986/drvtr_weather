@@ -4,7 +4,8 @@
 namespace Drvtr\Weather\Model;
 
 
-use Magento\Framework\HTTP\ZendClientFactory;
+use Magento\Framework\HTTP\Client\Curl;
+use Magento\Framework\HTTP\Client\CurlFactory;
 use Magento\Framework\Serialize\Serializer\Json as JsonSerializer;
 use Magento\Framework\UrlInterface;
 
@@ -29,12 +30,19 @@ class ApiClient
     private $serializer;
 
     /**
+     * @var CurlFactory
+     */
+    private $curlFactory;
+
+
+    /**
      * ApiClient constructor.
      * @param Config $config
      * @param JsonSerializer $serializer
      * @param UrlInterface $urlBuilder
      */
     public function __construct(
+        CurlFactory $curlFactory,
         Config $config,
         JsonSerializer $serializer,
         UrlInterface $urlBuilder
@@ -42,6 +50,7 @@ class ApiClient
         $this->config = $config;
         $this->serializer = $serializer;
         $this->urlBuilder = $urlBuilder;
+        $this->curlFactory = $curlFactory;
     }
 
     /**
@@ -49,12 +58,11 @@ class ApiClient
      */
     public function getInfo()
     {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $this->buildUri());
-        curl_setopt($ch, CURLOPT_TIMEOUT,2); // Set timeout to 2s
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $response = curl_exec($ch);
-        curl_close($ch);
+        /** @var Curl $curlClient */
+        $curlClient = $this->curlFactory->create();
+        $curlClient->get($this->buildUri());
+        $response = $curlClient->getBody();
+
         return $this->serializer->unserialize($response);
     }
 
@@ -69,6 +77,6 @@ class ApiClient
             'appid' => $this->config->getApiKey(),
             'units' => $this->config->getUnits(),
         ];
-        return $apiUrl .= '?' . http_build_query($params);
+        return $apiUrl . '?' . http_build_query($params);
     }
 }

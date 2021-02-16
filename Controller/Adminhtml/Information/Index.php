@@ -19,7 +19,7 @@ class Index extends Action implements HttpGetActionInterface
     /**
      * @var PageFactory
      */
-    private PageFactory $resultPageFactory;
+    private $resultPageFactory;
 
     /**
      * Index constructor.
