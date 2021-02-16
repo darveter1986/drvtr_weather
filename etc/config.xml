@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <drvtr_weather>
+            <general>
+                <enable>1</enable>
+                <api_key>fd9602a75ff64459f74ec78624024714</api_key>
+                <api_url>http://api.openweathermap.org/data/2.5/weather</api_url>
+                <api_query>Lublin</api_query>
+                <units>metric</units>
+                <interval>10</interval>
+            </general>
+        </drvtr_weather>
+    </default>
+</config>

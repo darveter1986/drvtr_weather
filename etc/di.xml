@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Drvtr\Weather\Api\Data\WeatherInformationInterface"
+                type="Drvtr\Weather\Model\WeatherInformation" />
+    <preference for="Drvtr\Weather\Api\WeatherInformationAcquirerInterface"
+                type="Drvtr\Weather\Model\WeatherInformationAcquirer" />
+
+
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="weather_information_listing_data_source" xsi:type="string">Drvtr\Weather\Model\ResourceModel\WeatherInformation\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Drvtr\Weather\Model\ResourceModel\WeatherInformation\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">drvtr_weather</argument>
+            <argument name="eventPrefix" xsi:type="string">weather_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">weather_information_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Drvtr\Weather\Model\ResourceModel\WeatherInformation</argument>
+        </arguments>
+    </type>
+</config>

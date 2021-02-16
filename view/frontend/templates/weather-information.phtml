@@ -1,0 +1,29 @@
+<?php
+/**
+ * @var \Drvtr\Weather\Block\WeatherInformation $block
+ */
+?>
+
+<?php if ($block->isEnable()):  ?>
+    <h1 id="weather">Weather Information</h1>
+    <div class="wrapper weather-information">
+        <div data-bind="scope: 'weatherInformation'" id="weather-information">
+            <!-- ko template: getTemplate() --><!-- /ko -->
+        </div>
+    </div>
+
+    <script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "weatherInformation": {
+                            "component": "Drvtr_Weather/js/weather-information",
+                            "interval": <?= $block->getInterval() ?>
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+<?php endif; ?>
